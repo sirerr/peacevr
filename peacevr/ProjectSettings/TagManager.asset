@@ -9,6 +9,7 @@ TagManager:
   - negenergyball
   - emoticon
   - areatop
+  - maincanvas
   layers:
   - Default
   - TransparentFX
