@@ -81,6 +81,16 @@ public class playercontrol : MonoBehaviour {
 			
 			}
 
+			if(lookerhit.transform.tag == "emoticon")
+			{
+
+				if(playerstatref.playerenergy> 0f)
+				{
+					StartCoroutine(areabeamwait());
+					lookerhit.transform.gameObject.SendMessage("beingattacked");
+				}
+			}
+
 		}
 
 	}

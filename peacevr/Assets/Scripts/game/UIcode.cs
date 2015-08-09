@@ -10,12 +10,12 @@ public class UIcode : MonoBehaviour {
 	public playerstats playerstatsref;
 	public float energylevel=0;
 	public int intenergylevel =0;
-
+	public Texture zerolevel;
 
 	// Use this for initialization
 	void Start () {
 	
-
+		energybarobj.texture = zerolevel;
 	}
 	
 	// Update is called once per frame
@@ -58,7 +58,7 @@ public class UIcode : MonoBehaviour {
 			energybarobj.texture = energybars[0];
 			break;
 		default:
-			energybarobj.texture = null;
+			energybarobj.texture = zerolevel;
 			break;
 		}
 

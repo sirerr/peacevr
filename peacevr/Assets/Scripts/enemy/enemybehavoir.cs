@@ -11,6 +11,11 @@ public class enemybehavoir : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+	
+	}
+
+	void Awake()
+	{
 		playertrans = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 	

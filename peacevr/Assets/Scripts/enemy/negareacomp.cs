@@ -19,6 +19,12 @@ public class negareacomp : MonoBehaviour {
 	public float waittime =0;
 	public float areadeathtime =5f;
 
+	//fallspeed
+	public float fallspeed =0;
+
+	//gamemangerref
+	public gamemanager gamemanagerref;
+
 	private	void onAwake()
 	{
 
@@ -29,11 +35,16 @@ public class negareacomp : MonoBehaviour {
 	
 		currentcolor = GetComponent<Renderer>().material.color;
 		arearen = GetComponent<Renderer>();
+		flooryloc = GameObject.Find("floor").transform.position.y;
+	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+	if(Mathf.Abs(transform.position.y)>= flooryloc)
+		{
+			transform.Translate(0,-fallspeed * Time.deltaTime,0);
+		}
 	}
 
 	public void playerrayhit()
