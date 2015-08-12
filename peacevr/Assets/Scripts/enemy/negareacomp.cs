@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class negareacomp : MonoBehaviour {
 
 	//power level of the area
 	public float negstrength = 0;
+	//area percent
+	public float areanegpercent = 0;
+	// percent limit
+	public float percentlimit = 0;
 	//currentcolor
 	public Color currentcolor;
 	//newcolor
@@ -24,6 +29,8 @@ public class negareacomp : MonoBehaviour {
 
 	//gamemangerref
 	public gamemanager gamemanagerref;
+	// ui game ref
+	public UIcode uicoderef;
 
 	private	void onAwake()
 	{
@@ -36,7 +43,10 @@ public class negareacomp : MonoBehaviour {
 		currentcolor = GetComponent<Renderer>().material.color;
 		arearen = GetComponent<Renderer>();
 		flooryloc = GameObject.Find("floor").transform.position.y;
+		uicoderef = GameObject.Find("canvas0").transform.GetComponent<UIcode>();
+		areanegpercent = Mathf.Abs(Random.Range(0,percentlimit));
 	
+		uicoderef.negamount += areanegpercent;
 	}
 	
 	// Update is called once per frame
@@ -67,7 +77,10 @@ public class negareacomp : MonoBehaviour {
 
 	IEnumerator destroyarea()
 	{
+
 		yield return new WaitForSeconds(areadeathtime);
+		uicoderef.negamount -= areanegpercent;
+	
 		Destroy (transform.gameObject);
 	}
 }

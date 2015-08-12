@@ -90,6 +90,7 @@
      <Compile Include="Assets\Scripts\enemy\enemystats.cs" />
      <Compile Include="Assets\Scripts\enemy\negareacomp.cs" />
      <Compile Include="Assets\Scripts\game\UIcode.cs" />
+     <Compile Include="Assets\Scripts\game\enemyspawn.cs" />
      <Compile Include="Assets\Scripts\game\gamemanager.cs" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\OVR\Shaders\TextShader3D.shader" />

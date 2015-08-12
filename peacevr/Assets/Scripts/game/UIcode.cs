@@ -11,16 +11,33 @@ public class UIcode : MonoBehaviour {
 	public float energylevel=0;
 	public int intenergylevel =0;
 	public Texture zerolevel;
+// the neg energy amount in the scene
+	public GameObject negpercentage;
+	public float negamount;
+	// the counter for the timer
+	public GameObject timer;
 
 	// Use this for initialization
 	void Start () {
 	
 		energybarobj.texture = zerolevel;
+
+
+		for(int i=0;i<transform.childCount;i++)
+		{
+			if(transform.GetChild(i).transform.name == "timer")
+			{
+				timer = transform.GetChild(i).gameObject;
+			}
+
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+		negpercentage.GetComponent<Text>().text = negamount.ToString();
+
 		energylevel = Mathf.Abs(playerstatsref.playerenergy/10f);
 		intenergylevel = Mathf.FloorToInt(energylevel);
 
