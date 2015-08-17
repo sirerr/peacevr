@@ -137,7 +137,15 @@ public class enemyaction : MonoBehaviour {
 		//print ("player attacking me");
 		intstate = 3;
 
-		StartCoroutine(decreasenegstrength());
+		if(enemystatsref.enemynegstrength>0)
+		{
+			StartCoroutine(decreasenegstrength());
+		}
+		else
+		{
+			return;
+		}
+
 	}
 
 	IEnumerator decreasenegstrength()
@@ -145,8 +153,9 @@ public class enemyaction : MonoBehaviour {
 		yield return new WaitForSeconds(waittimefromattack);
 		enemystatsref.enemynegstrength--;
 
-		if(enemystatsref.enemynegstrength<0)
+		if(enemystatsref.enemynegstrength<=0)
 		{
+			transform.GetComponent<BoxCollider>().enabled = false;
 			StartCoroutine(deathcor());
 		}
 	}
@@ -154,7 +163,8 @@ public class enemyaction : MonoBehaviour {
 	IEnumerator deathcor()
 	{
 		yield return new WaitForSeconds(1f);
-		Destroy(transform.gameObject);
+		gamemanagerref.defeatedenemies = gamemanagerref.defeatedenemies +1;
+		Destroy(gameObject);
 
 	}
 }

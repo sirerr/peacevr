@@ -80,7 +80,7 @@ public class negareacomp : MonoBehaviour {
 
 		yield return new WaitForSeconds(areadeathtime);
 		uicoderef.negamount -= areanegpercent;
-	
+		gamemanagerref.enemyareasgone = gamemanagerref.enemyareasgone +1;
 		Destroy (transform.gameObject);
 	}
 }

@@ -15,12 +15,21 @@ public class gamemanager : MonoBehaviour {
 	public Text gametimertext;
 	//the game limit
 	public int gametimelimit =0;
-
+	//reference spawn
+	private enemyspawn enemyspawnref;
+	//enemy defeated count
+	public int defeatedenemies=0;
+	public bool allenemiesdefeated = false;
+	//areas nullified
+	public int enemyareasgone = 0;
+	public bool allareanull = false;
+	//test code
+	//test code
 
 	// Use this for initialization
 	void Start () {
 		uicoderef = GameObject.Find("canvas0").GetComponent<UIcode>();
-	
+		enemyspawnref = GetComponent<enemyspawn>();
 		StartCoroutine(corgametimer());
 	}
 
@@ -41,10 +50,27 @@ public class gamemanager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		//check to see if 
+		//check to see if there is to much negative energy
 		if(uicoderef.negamount > 100f)
 		{
 			uicoderef.negamount = 100f;
+			itsover = true;
+			gamestate =0;
+		}
+
+		if(defeatedenemies == enemyspawnref.faceamount)
+		{
+			allenemiesdefeated =true;
+			print ("all enemies defeated");
+			//defeatedenemies--;
+			itsover = true;
+			gamestate =0;
+		}
+
+		if(enemyareasgone == enemyspawnref.faceamount)
+		{
+			allareanull = true;
+			print ("all areas gone");
 			itsover = true;
 			gamestate =0;
 		}
@@ -57,6 +83,7 @@ public class gamemanager : MonoBehaviour {
 				itsover =false;
 				gamestate  = 5;
 				//do courotine here to end the game
+				print("level over");
 			}
 			break;
 			case 1:

@@ -25,6 +25,10 @@ public class playercontrol : MonoBehaviour {
 	void Start () {
 		playerstatref = transform.GetComponent<playerstats>();
 
+		if(Application.isEditor)
+		{
+			transform.root.transform.GetComponent<MouseLook>().enabled = true;
+		}
 	}
 	
 	// Update is called once per frame
