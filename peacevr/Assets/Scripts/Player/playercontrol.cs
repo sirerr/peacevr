@@ -20,6 +20,12 @@ public class playercontrol : MonoBehaviour {
 
 	//the hit location of the raycast
 	public Vector3 hitlocation;
+	//game object with trailrenderer
+	public GameObject laserobj;
+	//laser move speed
+	public float laserspeed =0;
+
+	public float lastattacktime =0;
 
 	// Use this for initialization
 	void Start () {
@@ -45,10 +51,16 @@ public class playercontrol : MonoBehaviour {
 		touchpadinput = Input.GetMouseButton(0);
 		backbuttoninput = Input.GetMouseButton(1);
 
+		//trail render control
+		if(!touchpadinput)
+		{
+			laserobj.SetActive(false);
+		}
+
 		//raycast area
 		Debug.DrawRay(transform.position,transform.TransformDirection(Vector3.forward * raydistance), Color.red, .1f);
 
-		if(touchpadinput)
+		if(touchpadinput && (Time.time- lastattacktime)>.1f)
 		{
 
 			RaycastHit lookerhit;
@@ -62,6 +74,9 @@ public class playercontrol : MonoBehaviour {
 			}
 
 			hitlocation = lookerhit.transform.position;
+			laserobj.transform.LookAt(hitlocation);
+			laserobj.transform.position = Vector3.MoveTowards(laserobj.transform.position,hitlocation,laserspeed);
+			//laserobj.transform.position = hitlocation;
 
 			if(lookerhit.transform.tag == "energyball")
 			{
@@ -92,6 +107,7 @@ public class playercontrol : MonoBehaviour {
 				{
 					StartCoroutine(areabeamwait());
 					lookerhit.transform.gameObject.SendMessage("beingattacked");
+					lastattacktime = Time.time;
 				}
 			}
 

@@ -149,13 +149,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   negstrength: 50
   areanegpercent: 0
-  percentlimit: 10
+  percentlimit: 15
   currentcolor: {r: 0, g: 0, b: 0, a: 0}
   newcolor: {r: 1, g: .972413778, b: 0, a: .546999991}
   flooryloc: 0
   arearen: {fileID: 0}
   waittime: .300000012
-  areadeathtime: 5
+  areadeathtime: 2
   fallspeed: 10
   gamemanagerref: {fileID: 0}
   uicoderef: {fileID: 0}
@@ -180,7 +180,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: percentlimit
-      value: 10
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: areadeathtime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -134,12 +134,19 @@ public class enemyaction : MonoBehaviour {
 
 	public void beingattacked()
 	{
-		//print ("player attacking me");
+		print ("player attacking me");
 		intstate = 3;
+
 
 		if(enemystatsref.enemynegstrength>0)
 		{
-			StartCoroutine(decreasenegstrength());
+			enemystatsref.enemynegstrength--;
+			
+			if(enemystatsref.enemynegstrength<=0)
+			{
+				transform.GetComponent<BoxCollider>().enabled = false;
+				Destroy(gameObject,1f);
+			}
 		}
 		else
 		{
@@ -148,23 +155,28 @@ public class enemyaction : MonoBehaviour {
 
 	}
 
-	IEnumerator decreasenegstrength()
-	{
-		yield return new WaitForSeconds(waittimefromattack);
-		enemystatsref.enemynegstrength--;
+//	IEnumerator decreasenegstrength()
+//	{
+//		yield return new WaitForSeconds(waittimefromattack);
+//		enemystatsref.enemynegstrength--;
+//
+//		if(enemystatsref.enemynegstrength<=0)
+//		{
+//			transform.GetComponent<BoxCollider>().enabled = false;
+//			Destroy(gameObject,1f);
+//		}
+//	}
 
-		if(enemystatsref.enemynegstrength<=0)
-		{
-			transform.GetComponent<BoxCollider>().enabled = false;
-			StartCoroutine(deathcor());
-		}
+void OnDisable()
+	{
+		gamemanagerref.defeatedenemies++;
 	}
 
-	IEnumerator deathcor()
-	{
-		yield return new WaitForSeconds(1f);
-		gamemanagerref.defeatedenemies = gamemanagerref.defeatedenemies +1;
-		Destroy(gameObject);
-
-	}
+//	IEnumerator deathcor()
+//	{
+//		yield return new WaitForSeconds(1f);
+//		gamemanagerref.defeatedenemies = gamemanagerref.defeatedenemies +1;
+//		Destroy(gameObject);
+//
+//	}
 }
